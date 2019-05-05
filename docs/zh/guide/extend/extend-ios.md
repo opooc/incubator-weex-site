@@ -24,7 +24,7 @@ weex.requireModule("event").showParams("hello Weex)
 关于 Module 和 Module 方法的执行特性（同步、异步；执行线程），需要了解：
 
 1. `weexInstance`  
-在一个 Weex 页面中，默认 WXSDKInstance 的实例持有多个 module 的实例, 而 Module 的实例是是没有对 WXSDKInstance 做持有的，在自定义的 module 中添加 `@synthesize weexInstance`，module 实例可以对持有它本身的 WXSDKInstance 实例做一个弱引用，通过 weexInstance 可以拿到调用该 module 的页面的一些信息。
+在一个 Weex 页面中，默认 WXSDKInstance 的实例持有多个 module 的实例, 而 Module 的实例是没有对 WXSDKInstance 做持有的，在自定义的 module 中添加 `@synthesize weexInstance`，module 实例可以对持有它本身的 WXSDKInstance 实例做一个弱引用，通过 weexInstance 可以拿到调用该 module 的页面的一些信息。
 2. `targetExecuteThread`  
 Module 方法默认会在 UI 线程（iOS 主线程）中被调用，建议不要在这做太多耗时的任务。如果你的任务不需要在 UI 线程执行或需要在特定线程执行，需要实现 `WXModuleProtocol` 中的 `- (NSThread *)` 的方法，并返回你希望方法执行所在的线程。
 3. `WXModuleKeepAliveCallback`  
